@@ -31,7 +31,7 @@ class App extends React.Component {
         </div>
       );
     } else {
-      return (<div></div>);
+      return (<h1>Loading!!!!!!!!!</h1>);
     }
   }
 

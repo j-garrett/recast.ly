@@ -1,31 +1,22 @@
-// var App = (props) => (
-//   <div>
-//     <Nav />
-//     <div className="col-md-7">
-//       <VideoPlayer video={props.videos[0]}/>
-//     </div>
-//     <div className="col-md-5">
-//       <VideoList videos={props.videos}/>
-//     </div>
-//   </div>
-// );
-
 class App extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {currentlyPlaying: exampleVideoData[0], currentList: exampleVideoData};
+
+    this.state = {
+      currentlyPlaying: undefined,
+      currentList: props.searchYouTube,
+    };
   }
 
   render () {
-    console.log(this.props);
     return (
       <div>
         <Nav />
         <div className="col-md-7">
-          <VideoPlayer video={this.state.currentlyPlaying}/>
+          <VideoPlayer video={this.state.currentlyPlaying ? this.state.currentlyPlaying : exampleVideoData[0]}/>
         </div>
         <div className="col-md-5">
-          <VideoList videos={this.state.currentList} play={this.playVideo.bind(this)}/>
+          <VideoList videos={exampleVideoData} play={this.playVideo.bind(this)}/>
         </div>
       </div>
     );

@@ -5,7 +5,6 @@ class App extends React.Component {
       currentlyPlaying: undefined,
       currentList: undefined
     };
-
   }
 
   componentDidMount () {
@@ -13,17 +12,21 @@ class App extends React.Component {
   }
 
   render () {
-    return (
-      <div>
-        <Nav />
-        <div className="col-md-7">
-          <VideoPlayer video={this.state.currentlyPlaying ? this.state.currentlyPlaying : exampleVideoData[0]}/>
+    if (this.state.currentList !== undefined) {
+      return (
+        <div>
+          <Nav />
+          <div className="col-md-7">
+            <VideoPlayer video={this.state.currentlyPlaying}/>
+          </div>
+          <div className="col-md-5">
+            <VideoList videos={this.state.currentList} play={this.playVideo.bind(this)}/>
+          </div>
         </div>
-        <div className="col-md-5">
-          <VideoList videos={this.state.currentList ? this.state.currentList : exampleVideoData} play={this.playVideo.bind(this)}/>
-        </div>
-      </div>
-    );
+      );
+    } else {
+      return (<div></div>);
+    }
   }
 
   playVideo (video) {

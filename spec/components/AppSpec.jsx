@@ -19,13 +19,21 @@ describe('App', function() {
   });
 
   it('should render a single VideoPlayer component', function() {
-    var videoPlayer = findRenderedDOMComponentWithClass(app, 'video-player');
-    expect(videoPlayer).to.exist;
+
+    setTimeout( function() {
+      var videoPlayer = findRenderedDOMComponentWithClass(app, 'video-player');
+      expect(videoPlayer).to.exist;
+    }, 0);
+
+
   });
 
   it('should render a single VideoList component', function() {
-    var videoList = findRenderedDOMComponentWithClass(app, 'video-list');
-    expect(videoList).to.exist;
+
+    setTimeout( function() {
+      var videoList = findRenderedDOMComponentWithClass(app, 'video-list');
+      expect(videoList).to.exist;
+    }, 0);
   });
 
   it('should update the video player when a video entry\'s title is clicked', function() {

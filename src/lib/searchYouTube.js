@@ -1,9 +1,6 @@
 var searchYouTube = (options, callback) => {
-  if (!options) {
-    console.log('no options');
-    return undefined;
-  }
-  var params = `part=snippet&maxResults=${options.max || 5}&q=${options.query}&type=video&key=${options.key || YOUTUBE_API_KEY}`;
+
+  var params = `part=snippet&maxResults=${options.max || 5}&q=${options.query || 'cats'}&type=video&key=${options.key || YOUTUBE_API_KEY}`;
 
   $.ajax({
     type: 'GET',
@@ -12,6 +9,7 @@ var searchYouTube = (options, callback) => {
     success: function (data) {
       console.log('success', data.items);
       callback(data.items);
+      return {currentlyPlaying: data.items[0], currentList: data.items};
     },
     error: function(error) {
       console.error('failer', error);

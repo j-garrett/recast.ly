@@ -5,6 +5,12 @@ class App extends React.Component {
       currentlyPlaying: undefined,
       currentList: undefined
     };
+    this.sendSearch = _.debounce(this.search, 500);
+  }
+
+  search(input) {
+    console.log('search event heard', input);
+    this.props.searchYouTube({query: input}, this.updateResults.bind(this));
   }
 
   componentDidMount () {
@@ -15,7 +21,7 @@ class App extends React.Component {
     if (this.state.currentList !== undefined) {
       return (
         <div>
-          <Nav />
+          <Nav search={this.sendSearch.bind(this)}/>
           <div className="col-md-7">
             <VideoPlayer video={this.state.currentlyPlaying}/>
           </div>

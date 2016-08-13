@@ -1,1 +1,1 @@
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App videos = {exampleVideoData}/>, document.getElementById('app'));

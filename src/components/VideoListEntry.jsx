@@ -1,17 +1,12 @@
 var VideoListEntry = (props) => {
 
-  var playVideo = (event) => {
-    console.log('gonna play the video now ', event);
-    <VideoPlayer video={props.video} />;
-  };  
-
   return (
     <div className="video-list-entry">
       <div className="media-left media-middle">
         <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
       </div>
       <div className="media-body">
-        <div className="video-list-entry-title" onClick={playVideo}>{props.video.snippet.title}</div>
+        <div className="video-list-entry-title" onClick={(event) => (props.play(props.video))}>{props.video.snippet.title}</div>
         <div className="video-list-entry-detail">{props.video.snippet.description}</div>
       </div>
     </div>

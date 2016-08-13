@@ -1,6 +1,8 @@
 var searchYouTube = (options, callback) => {
-  // TODO
-<<<<<<< HEAD
+  if (!options) {
+    console.log('no options');
+    return undefined;
+  }
   var params = `part=snippet&maxResults=${options.max || 5}&q=${options.query}&type=video&key=${options.key || YOUTUBE_API_KEY}`;
 
   $.ajax({
@@ -15,9 +17,7 @@ var searchYouTube = (options, callback) => {
       console.error('failer', error);
     }
   });
-=======
-  
->>>>>>> a86632f70542d4dca96a89c8dbfde91d9a1abb58
+
 };
 
 window.searchYouTube = searchYouTube;

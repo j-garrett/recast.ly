@@ -1,11 +1,15 @@
 class App extends React.Component {
   constructor (props) {
     super(props);
-
     this.state = {
       currentlyPlaying: undefined,
-      currentList: props.searchYouTube,
+      currentList: undefined
     };
+
+  }
+
+  componentDidMount () {
+    this.props.searchYouTube({}, this.updateResults.bind(this));
   }
 
   render () {
@@ -16,7 +20,7 @@ class App extends React.Component {
           <VideoPlayer video={this.state.currentlyPlaying ? this.state.currentlyPlaying : exampleVideoData[0]}/>
         </div>
         <div className="col-md-5">
-          <VideoList videos={exampleVideoData} play={this.playVideo.bind(this)}/>
+          <VideoList videos={this.state.currentList ? this.state.currentList : exampleVideoData} play={this.playVideo.bind(this)}/>
         </div>
       </div>
     );
@@ -24,6 +28,13 @@ class App extends React.Component {
 
   playVideo (video) {
     this.setState({currentlyPlaying: video});
+  }
+
+  updateResults (videoList) {
+    if (this.state.currentlyPlaying === undefined) {
+      this.setState({currentlyPlaying: videoList[0]});
+    }
+    this.setState({currentList: videoList});
   }
 
 }
